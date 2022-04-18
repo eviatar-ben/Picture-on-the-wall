@@ -7,7 +7,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 IMAGES_PATH = 'Images'
 THRESH = 0.5
 DOMINANT_COLORS_NUM = 3
-INPUT = r'C:\Users\eviatar\OneDrive\Documents\Python Venv\FitImage\Images\books1.jpeg'
+INPUT = r'Images\books1.jpeg'
 
 
 def detect_properties(path, present=False):

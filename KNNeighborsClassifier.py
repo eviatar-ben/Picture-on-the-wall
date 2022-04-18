@@ -1,8 +1,8 @@
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 
-INPUT_PATH = r'C:\Users\eviatar\OneDrive\Documents\Python Venv\FitImage\vector_to_predict'
-DATA_PATH = r'C:\Users\eviatar\OneDrive\Documents\Python Venv\FitImage\TrainData'
+INPUT_PATH = r'vector_to_predict'
+DATA_PATH = r'TrainData'
 
 
 def split_data(df):
