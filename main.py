@@ -93,9 +93,6 @@ def get_and_insert_vector(image_path, image, cols, df, prediction=False):
 
     def process_labels_and_colors():
 
-        # labels_dict = {label: False for label in utilities.relevant_labels}
-        # colors_dict = {color: False for color in utilities.relevant_colors}
-        # result = {**colors_dict, **labels_dict}
         result = {feature: False for feature in cols}
         for label in labels:
             if label in utilities.relevant_labels:
