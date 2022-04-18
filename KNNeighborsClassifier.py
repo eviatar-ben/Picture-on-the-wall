@@ -11,7 +11,7 @@ def split_data(df):
     return x.to_numpy(), y.to_numpy()
 
 
-def main():
+def get_prediction():
     df = pd.read_csv(DATA_PATH)
     x, y = split_data(df)
     classifier = KNeighborsClassifier(n_neighbors=3)
@@ -24,4 +24,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    get_prediction()
