@@ -4,7 +4,8 @@ import os
 import pandas as pd
 
 INDEX_NAME = 'Image_name'
-
+IMAGES_PATH = r'40_pic_image_frame_in_room'
+INPUT = r'Images\books1.jpeg'
 
 def main():
     images_list = os.listdir(vision_and_data_tools.IMAGES_PATH)
@@ -14,7 +15,8 @@ def main():
     df = pd.DataFrame(columns=cols, index=images_list)
     df.index.name = INDEX_NAME
     vision_and_data_tools.load_data(images_list, df, cols)
-    vector_to_predict = vision_and_data_tools.get_and_insert_vector(vision_and_data_tools.INPUT, None, cols, None, prediction=True)
+    vector_to_predict = vision_and_data_tools.get_and_insert_vector(vision_and_data_tools.INPUT, None, cols, None,
+                                                                    prediction=True)
     vector_to_predict.to_csv('vector_to_predict')
 
     KNNeighborsClassifier.get_prediction()

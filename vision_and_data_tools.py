@@ -90,6 +90,9 @@ def get_and_insert_vector(image_path, image, cols, df, prediction=False):
     """
     get the image's vector and set it in the TrainData Frame df.
     if prediction is True meaning the given image is the input.
+
+    return the df, in case that image frame didnt detect the df will drop the proper  redundant row.
+    in case which prediction is needed the vector will be returned
     """
 
     def process_labels_and_colors():
@@ -116,11 +119,12 @@ def get_and_insert_vector(image_path, image, cols, df, prediction=False):
     # no need to consider images without 'Picture frame' label - Noise
     if labels:
         df.loc[image] = pd.Series(process_labels_and_colors())
+    return df
 
 
 def load_data(images_list, df, cols):
     for image in images_list:
         print(f"working on image: {image}")
         image_path = f'{IMAGES_PATH}/{image}'
-        get_and_insert_vector(image_path, image, cols, df)
+        df = get_and_insert_vector(image_path, image, cols, df)
     df.to_csv('TrainData')
