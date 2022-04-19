@@ -2,9 +2,10 @@ import os
 import io
 import utilities
 import pandas as pd
+
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 
-IMAGES_PATH = 'Images'
+IMAGES_PATH = r'C:\Users\eviatar\PycharmProjects\Picture-on-the-wall\image_frame_in_room'
 THRESH = 0.5
 DOMINANT_COLORS_NUM = 3
 INPUT = r'Images\books1.jpeg'
@@ -117,9 +118,7 @@ def get_and_insert_vector(image_path, image, cols, df, prediction=False):
 
 def load_data(images_list, df, cols):
     for image in images_list:
+        print(f"working on image: {image}")
         image_path = f'{IMAGES_PATH}/{image}'
         get_and_insert_vector(image_path, image, cols, df)
     df.to_csv('TrainData')
-
-
-
