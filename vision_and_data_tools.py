@@ -5,7 +5,7 @@ import pandas as pd
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 
-IMAGES_PATH = r'C:\Users\eviatar\PycharmProjects\Picture-on-the-wall\image_frame_in_room'
+IMAGES_PATH = r'40_pic_image_frame_in_room'
 THRESH = 0.5
 DOMINANT_COLORS_NUM = 3
 INPUT = r'Images\books1.jpeg'
@@ -110,7 +110,9 @@ def get_and_insert_vector(image_path, image, cols, df, prediction=False):
 
     if prediction:
         return pd.Series(process_labels_and_colors())
-
+    # deleting the empty row
+    if not labels:
+        df = df.drop(image)
     # no need to consider images without 'Picture frame' label - Noise
     if labels:
         df.loc[image] = pd.Series(process_labels_and_colors())
