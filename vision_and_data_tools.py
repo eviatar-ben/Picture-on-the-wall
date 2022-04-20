@@ -4,7 +4,6 @@ import utilities
 import pandas as pd
 from google.cloud import vision
 
-
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 
 IMAGES_PATH = r'all_images'
@@ -131,6 +130,7 @@ def get_and_insert_vector(image_path, image, cols, df, prediction=False):
 def load_data(images_list, df, cols):
     i = 0
     for image in images_list:
+        i += 1
         if i in [50, 100, 150, 200, 250, 100, 130, 400, 450]:
             print(utilities.labels_dicts)
             print(utilities.colors_dict)
