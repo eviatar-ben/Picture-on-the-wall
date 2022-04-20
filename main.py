@@ -4,8 +4,9 @@ import os
 import pandas as pd
 
 INDEX_NAME = 'Image_name'
-IMAGES_PATH = r'40_pic_image_frame_in_room'
+IMAGES_PATH = r'all_images'
 INPUT = r'Images\books1.jpeg'
+
 
 def main():
     images_list = os.listdir(vision_and_data_tools.IMAGES_PATH)

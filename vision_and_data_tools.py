@@ -5,7 +5,7 @@ import pandas as pd
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 
-IMAGES_PATH = r'40_pic_image_frame_in_room'
+IMAGES_PATH = r'all_images'
 THRESH = 0.5
 DOMINANT_COLORS_NUM = 3
 INPUT = r'Images\books1.jpeg'
@@ -126,5 +126,8 @@ def load_data(images_list, df, cols):
     for image in images_list:
         print(f"working on image: {image}")
         image_path = f'{IMAGES_PATH}/{image}'
-        df = get_and_insert_vector(image_path, image, cols, df)
+        try:
+            df = get_and_insert_vector(image_path, image, cols, df)
+        except:
+            print(f"exception in image {image}")
     df.to_csv('TrainData')
