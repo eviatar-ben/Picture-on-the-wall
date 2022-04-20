@@ -3,6 +3,8 @@ import KNNeighborsClassifier
 import os
 import pandas as pd
 
+import csv
+
 INDEX_NAME = 'Image_name'
 IMAGES_PATH = r'all_images'
 INPUT = r'Images\books1.jpeg'
@@ -26,6 +28,15 @@ def main():
     l_df.to_csv("all_labels.csv")
 
 
-
 if __name__ == '__main__':
     main()
+    print(vision_and_data_tools.utilities.labels_dicts)
+    print(vision_and_data_tools.utilities.colors_dict)
+    with open('dict.csv', 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in vision_and_data_tools.utilities.labels_dicts.items():
+            writer.writerow([key, value])
+
+        for key, value in vision_and_data_tools.utilities.colors_dict.items():
+            writer.writerow([key, value])
+

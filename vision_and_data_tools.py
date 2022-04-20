@@ -36,6 +36,8 @@ def detect_properties(path, present=False):
         # considering only the 4 most dominant colors
         if i > DOMINANT_COLORS_NUM:
             break
+        # in order to minimize bias variance trade off research for noisy features is needed
+        utilities.colors_dict[utilities.closest_colour(rgb)] += 1
     if present:
         print('Properties:')
         for color in props.dominant_colors.colors:
@@ -71,6 +73,9 @@ def detect_labels(path, present=False):
         all_labels.append(label.description)
         if label.score > THRESH:
             detected_labels.append(label.description)
+
+        # in order to minimize bias variance trade off research for noisy features is needed
+        utilities.colors_dict[utilities.closest_colour(label)] += 1
 
     if present:
         print('Labels:')
