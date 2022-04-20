@@ -23,7 +23,6 @@ def main():
     vector_to_predict.to_csv('vector_to_predict')
     KNNeighborsClassifier.get_prediction()
 
-    print(vision_and_data_tools.all_labels)
     l_df = pd.DataFrame(vision_and_data_tools.all_labels)
     l_df.to_csv("all_labels.csv")
 

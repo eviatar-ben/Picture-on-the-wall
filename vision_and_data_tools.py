@@ -2,6 +2,8 @@ import os
 import io
 import utilities
 import pandas as pd
+from google.cloud import vision
+
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 
@@ -15,8 +17,6 @@ all_labels = []
 
 def detect_properties(path, present=False):
     """Detects image properties in the file."""
-    from google.cloud import vision
-    import io
     client = vision.ImageAnnotatorClient()
 
     with io.open(path, 'rb') as image_file:
@@ -57,8 +57,6 @@ def detect_properties(path, present=False):
 
 def detect_labels(path, present=False):
     """Detects labels in the file."""
-    from google.cloud import vision
-    import io
     client = vision.ImageAnnotatorClient()
 
     with io.open(path, 'rb') as image_file:
@@ -131,12 +129,17 @@ def get_and_insert_vector(image_path, image, cols, df, prediction=False):
 
 
 def load_data(images_list, df, cols):
+    i = 0
     for image in images_list:
+        if i in [50, 100, 150, 200, 250, 100, 130, 400, 450]:
+            print(utilities.labels_dicts)
+            print(utilities.colors_dict)
+
         print(f"working on image: {image}")
         image_path = f'{IMAGES_PATH}/{image}'
-        # try:
-        df = get_and_insert_vector(image_path, image, cols, df)
-        # except:
-        #     print(f"exception in image {image}")
+        try:
+            df = get_and_insert_vector(image_path, image, cols, df)
+        except:
+            print(f"exception in image {image}")
 
     df.to_csv('TrainData')
