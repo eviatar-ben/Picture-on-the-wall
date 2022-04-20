@@ -19,8 +19,12 @@ def main():
     vector_to_predict = vision_and_data_tools.get_and_insert_vector(vision_and_data_tools.INPUT, None, cols, None,
                                                                     prediction=True)
     vector_to_predict.to_csv('vector_to_predict')
-
     KNNeighborsClassifier.get_prediction()
+
+    print(vision_and_data_tools.all_labels)
+    l_df = pd.DataFrame(vision_and_data_tools.all_labels)
+    l_df.to_csv("all_labels.csv")
+
 
 
 if __name__ == '__main__':

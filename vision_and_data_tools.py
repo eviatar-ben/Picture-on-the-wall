@@ -10,6 +10,8 @@ THRESH = 0.5
 DOMINANT_COLORS_NUM = 3
 INPUT = r'Images\books1.jpeg'
 
+all_labels = []
+
 
 def detect_properties(path, present=False):
     """Detects image properties in the file."""
@@ -66,6 +68,7 @@ def detect_labels(path, present=False):
     labels = response.label_annotations
     detected_labels = []
     for label in labels:
+        all_labels.append(label.description)
         if label.score > THRESH:
             detected_labels.append(label.description)
 
@@ -130,4 +133,5 @@ def load_data(images_list, df, cols):
             df = get_and_insert_vector(image_path, image, cols, df)
         except:
             print(f"exception in image {image}")
+
     df.to_csv('TrainData')
