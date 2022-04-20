@@ -75,7 +75,7 @@ def detect_labels(path, present=False):
             detected_labels.append(label.description)
 
         # in order to minimize bias variance trade off research for noisy features is needed
-        utilities.colors_dict[utilities.closest_colour(label)] += 1
+        utilities.labels_dicts[label.description] += 1
 
     if present:
         print('Labels:')
@@ -134,9 +134,9 @@ def load_data(images_list, df, cols):
     for image in images_list:
         print(f"working on image: {image}")
         image_path = f'{IMAGES_PATH}/{image}'
-        try:
-            df = get_and_insert_vector(image_path, image, cols, df)
-        except:
-            print(f"exception in image {image}")
+        # try:
+        df = get_and_insert_vector(image_path, image, cols, df)
+        # except:
+        #     print(f"exception in image {image}")
 
     df.to_csv('TrainData')
