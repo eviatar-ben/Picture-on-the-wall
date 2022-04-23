@@ -28,6 +28,7 @@ def main():
 
 
 if __name__ == '__main__':
+
     main()
     print(vision_and_data_tools.utilities.labels_dicts)
     print(vision_and_data_tools.utilities.colors_dict)

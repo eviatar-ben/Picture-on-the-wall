@@ -8,7 +8,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 
 IMAGES_PATH = r'all_images'
 THRESH = 0.5
-DOMINANT_COLORS_NUM = 3
+DOMINANT_COLORS_NUM = 4
 INPUT = r'Images\books1.jpeg'
 
 all_labels = []
@@ -26,17 +26,19 @@ def detect_properties(path, present=False):
     response = client.image_properties(image=image)
     props = response.image_properties_annotation
 
-    dominant_colors_3 = []
+    dominant_colors_4 = []
     i = 0
     for color in props.dominant_colors.colors:
         rgb = [color.color.red, color.color.green, color.color.blue, color.color.alpha]
-        dominant_colors_3.append(utilities.closest_colour(rgb))
+        projected_color = utilities.closest_colour(rgb)
+        if projected_color in utilities.filtered_colors.keys():
+            dominant_colors_4.append(projected_color)
         i += 1
         # considering only the 4 most dominant colors
         if i > DOMINANT_COLORS_NUM:
             break
-        # in order to minimize bias variance trade off research for noisy features is needed
-        utilities.colors_dict[utilities.closest_colour(rgb)] += 1
+        # in order to minimize bias-variance trade off research for noisy features is needed
+        utilities.colors_dict[projected_color] += 1
     if present:
         print('Properties:')
         for color in props.dominant_colors.colors:
@@ -51,7 +53,7 @@ def detect_properties(path, present=False):
             '{}\nFor more info on error messages, check: '
             'https://cloud.google.com/apis/design/errors'.format(
                 response.error.message))
-    return dominant_colors_3
+    return dominant_colors_4
 
 
 def detect_labels(path, present=False):
@@ -68,10 +70,10 @@ def detect_labels(path, present=False):
     detected_labels = []
     for label in labels:
         all_labels.append(label.description)
-        if label.score > THRESH:
+        if label.score > THRESH and label.description in utilities.filtered_labels.keys():
             detected_labels.append(label.description)
 
-        # in order to minimize bias variance trade off research for noisy features is needed
+        # in order to minimize bias-variance trade off research for noisy features is needed
         utilities.labels_dicts[label.description] += 1
 
     if present:
