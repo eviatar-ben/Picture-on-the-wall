@@ -37,9 +37,9 @@ def detect_corner():
         cv2.rectangle(image, (x - offset, y - offset), (x + offset, y + offset), (36, 255, 12), 3)
         print("({}, {})".format(x, y))
 
-    cv2.imwrite(f"{OUTPUT_PATH}/thresh.jpg", thresh)
-    cv2.imwrite(f"{OUTPUT_PATH}/img.jpg", image)
-    cv2.imwrite(f"{OUTPUT_PATH}/mask.jpg", mask)
+    cv2.imwrite(f"{OUTPUT_PATH}/detect_corner_thresh.jpg", thresh)
+    cv2.imwrite(f"{OUTPUT_PATH}/detect_corner_img.jpg", image)
+    cv2.imwrite(f"{OUTPUT_PATH}/detect_corner_mask.jpg", mask)
 
 
 if __name__ == '__main__':
