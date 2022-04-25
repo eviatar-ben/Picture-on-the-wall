@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 
 INPUT_PATH = r'vector_to_predict'
-DATA_PATH = r'TrainData'
+DATA_PATH = r'Train_Data'
 
 
 def split_data(df):
