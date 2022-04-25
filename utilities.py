@@ -169,8 +169,7 @@ labels_distribution = {'Clock': 4, 'Real estate': 9, 'Orange': 62, 'Property': 4
                        'Facial expression': 1, 'Brown': 57, 'Aircraft': 1, 'Boat': 1, 'Purple': 26, 'Sky': 1,
                        'Television set': 1, 'Building': 300, 'Umbrella': 1}
 
-filtered_labels = {k: v for k, v in labels_distribution.items() if v >= 3}
-
+filtered_labels = {k: v for k, v in labels_distribution.items() if v >= 2}
 
 
 # -----------------------------------------------------functions------------------------------------------------------
