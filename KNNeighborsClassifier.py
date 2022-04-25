@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
 
 INPUT_PATH = r'vector_to_predict'
-DATA_PATH = r'Train_Data'
+DATA_PATH = r'TrainData_460'
 
 
 def split_data(df):
@@ -21,6 +21,7 @@ def get_prediction():
     # todo: check why transpose were needed
     prediction = classifier.predict(v.T)
     print(prediction)
+    return prediction
 
 
 if __name__ == '__main__':

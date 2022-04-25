@@ -2,12 +2,12 @@ import vision_and_data_tools
 import KNNeighborsClassifier
 import os
 import pandas as pd
-
+import yolo_detector
 import csv
 
 INDEX_NAME = 'Image_name'
 IMAGES_PATH = r'all_images'
-INPUT = r'Images\books1.jpeg'
+INPUT = r'Images\bed1.jpeg'
 
 
 def main():
@@ -17,26 +17,18 @@ def main():
     cols = set(labels_cols + colors_cols)
     df = pd.DataFrame(columns=cols, index=images_list)
     df.index.name = INDEX_NAME
-    vision_and_data_tools.load_data(images_list, df, cols)
+    # TrainData is ready to use
+    # vision_and_data_tools.load_data(images_list, df, cols)
     vector_to_predict = vision_and_data_tools.get_and_insert_vector(vision_and_data_tools.INPUT, None, cols, None,
                                                                     prediction=True)
     vector_to_predict.to_csv('vector_to_predict')
-    KNNeighborsClassifier.get_prediction()
+    prediction = KNNeighborsClassifier.get_prediction()[0]
+
+    most_likely = yolo_detector.get_empty_coord(yolo_detector.get_boxes_points("image.jpg"))
 
     l_df = pd.DataFrame(vision_and_data_tools.all_labels)
     l_df.to_csv("all_labels.csv")
 
 
 if __name__ == '__main__':
-
     main()
-    print(vision_and_data_tools.utilities.labels_dicts)
-    print(vision_and_data_tools.utilities.colors_dict)
-    with open('dict.csv', 'w') as csv_file:
-        writer = csv.writer(csv_file)
-        for key, value in vision_and_data_tools.utilities.labels_dicts.items():
-            writer.writerow([key, value])
-
-        for key, value in vision_and_data_tools.utilities.colors_dict.items():
-            writer.writerow([key, value])
-
