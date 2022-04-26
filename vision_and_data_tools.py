@@ -9,7 +9,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'Acc.json'
 IMAGES_PATH = r'all_images'
 THRESH = 0.5
 DOMINANT_COLORS_NUM = 4
-INPUT = r'Images\books1.jpeg'
+INPUT = r'Images\curtins1.jpeg'
 
 all_labels = []
 

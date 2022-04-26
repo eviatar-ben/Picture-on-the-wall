@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 OUTPUT_PATH = r"corner_detection_data"
-INPUT = r'DATA\curtins1.jpeg'
+INPUT = r'C:\Users\eviatar\PycharmProjects\Picture-on-the-wall\all_images\1.walmart-1565732036.jpeg'
 
 
 def detect_corner():
