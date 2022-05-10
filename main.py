@@ -9,7 +9,7 @@ import frame_detector
 
 INDEX_NAME = 'Image_name'
 IMAGES_PATH = r'all_images'
-INPUT = r'Images\curtins2.jpeg'
+INPUT = r'Images\shelf2.jpeg'
 
 
 def get_all_features():
@@ -23,6 +23,10 @@ def get_all_features():
 
 
 def main():
+    import sys
+    path_input = vision_and_data_tools.INPUT
+    if len(sys.argv) > 1:
+        path_input = sys.argv[1]
     # preprocess:
     cols, df, images_list = get_all_features()
 
@@ -30,7 +34,7 @@ def main():
     # vision_and_data_tools.load_data(images_list, df, cols)
 
     # get image feature vector (projection):
-    vector_to_predict = vision_and_data_tools.get_and_insert_vector(vision_and_data_tools.INPUT, None, cols, None,
+    vector_to_predict = vision_and_data_tools.get_and_insert_vector(path_input, None, cols, None,
                                                                     prediction=True)
     # get closest image to input:
     vector_to_predict.to_csv('vector_to_predict')

@@ -3,7 +3,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import cv2
 
 INPUT_PATH = r'vector_to_predict'
-DATA_PATH = r'TrainData_460'
+DATA_PATH = r'Perfect_TrainData'
 
 
 def split_data(df):

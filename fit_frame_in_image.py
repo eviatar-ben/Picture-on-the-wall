@@ -17,4 +17,4 @@ def fit_frame(img):
     im2 = im2.resize((basewidth, hsize), Image.ANTIALIAS)
 
     im1.paste(im2, (x, y))
-    im1.save('final_result.jpg', quality=95)
+    im1.save(r'final\final_result.jpg', quality=95)

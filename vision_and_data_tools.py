@@ -133,7 +133,7 @@ def load_data(images_list, df, cols):
     i = 0
     for image in images_list:
         i += 1
-        if i in [50, 100, 150, 200, 250, 100, 130, 400, 450]:
+        if i in [50, 100, 150, 200, 250, 300, 350, 400, 450]:
             print(utilities.labels_dicts)
             print(utilities.colors_dict)
 
